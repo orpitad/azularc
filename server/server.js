@@ -6,8 +6,10 @@ const app = express(); // initiate express
 
 const Employee = require('./models/Employee')
 app.use(express.json()) // Middleware to use json
-// app.use(express.urlencoded())
-
+app.use(express.urlencoded())
+const {
+    GridFsStorage
+  } = require("multer-gridfs-storage");
 
 
 app.get('/api', (req, res) => {
@@ -16,11 +18,11 @@ app.get('/api', (req, res) => {
 
 app.get('/api/employees', async(req,res) => {
     const employeesList = await Employee.find({});
-    //sort({})
     return res.json(employeesList)
 });
 
 app.post('/api/employees', async(req,res) => {
+    console.log("REEEEEW",req.body)
     const {name, age, email, dob, address, photo} = req.body;
     try {
         const newEmployee = new Employee({

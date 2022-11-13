@@ -20,9 +20,11 @@ const EmployeeSchema = new Schema(
             type: String
         },
         photo: {
-            data: Buffer,
-            contentType: String
-        }
+            type: Buffer
+        },
+        // file: { type: Buffer, required: true },
+        filename: { type: String },
+        // mimetype: { type: String, required: true }
         
     },
     {

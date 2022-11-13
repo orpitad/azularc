@@ -9,20 +9,21 @@ const NewEmployee = () => {
     const[email, setEmail] = useState('');
     const[dob, setdob] = useState();
     const[address, setAddress] = useState('');
-    const[photo, setPhoto] = useState();
+    const[photo, setPhoto] = useState('');
+    
 
 
     const save = (event) => {
         event.preventDefault();
         console.log({name, age, email, dob, address, photo});
+        
         const newEmployee = {name, age, email, dob, address, photo};
-        console.log('createNewEmployee', newEmployee)
         axios.post('/api/employees', {name, age, email, dob, address, photo}).then(res => {
             createNewEmployee(newEmployee)
         })
-
     }
     const changeHandler = (event) => {
+        console.log(event.target.files)
         setPhoto(event.target.files[0]);
     }
   return (
